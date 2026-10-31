@@ -1,68 +1,55 @@
-# 🏦 Banking Management System
+# Banking Management System (Java, JDBC, MySQL)
 
-A console-based **Banking Management System** developed using **Java,
-JDBC, and MySQL**.
+A menu-driven console banking application in Java that performs account CRUD and money movements on MySQL through JDBC, using manual commit and rollback for transaction safety.
 
 ## Features
 
--   Create New Account
--   View All Accounts
--   Search Account
--   Deposit Money
--   Withdraw Money
--   Transfer Money
--   Balance Enquiry
--   Delete Account
--   Transaction Management using commit() and rollback()
+- Create account, view all accounts, search account, balance enquiry and delete account
+- Deposit and withdraw money
+- Transfer money between two accounts as one transaction: debit and credit commit together or roll back together
+- Insufficient-balance and account-not-found checks before withdrawals and transfers
+- `PreparedStatement` for every query, `connection.setAutoCommit(false)` with explicit `commit()` and `rollback()`
 
-## Technologies Used
+## Tech Stack
 
--   Java
--   JDBC
--   MySQL
--   Eclipse IDE
--   MySQL Connector/J
+Java, JDBC, MySQL, MySQL Connector/J.
 
 ## Project Structure
 
-``` text
-BankingManagementSystem
-├── BankingProject.java
-├── AccountDAO.java
-├── ConnectionManager.java
-└── README.md
+```text
+com.Banking
+  BankingProject.java      Console menu (options 1 to 9) and user input
+  AccountDAO.java          JDBC operations and transaction handling
+  ConnectionManager.java   MySQL connection
 ```
 
 ## Database
 
-Database: `jdbcbank`
-
-  Column      Type
-  ----------- -----------------------------------
-  accountno   INT (Primary Key, Auto Increment)
-  name        VARCHAR(100)
-  email       VARCHAR(100)
-  password    VARCHAR(100)
-  balance     DOUBLE
-
-  : `account`
-
-## JDBC Concepts
-
--   PreparedStatement
--   ResultSet
--   CRUD Operations
--   Transactions
--   Exception Handling
+```sql
+CREATE DATABASE jdbcbank;
+USE jdbcbank;
+CREATE TABLE account (
+  accountno INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100),
+  password VARCHAR(100),
+  balance DOUBLE
+);
+```
 
 ## How to Run
 
-1.  Create the `jdbcbank` database.
-2.  Create the `account` table.
-3.  Update database credentials in `ConnectionManager.java`.
-4.  Add MySQL Connector/J.
-5.  Run `BankingProject.java`.
+1. Clone: `git clone https://github.com/abhiramkamarajugadda/Banking-Management-System.git`
+2. Create the database and table above.
+3. Update the URL, username and password in `ConnectionManager.java`.
+4. Place the files in a `com/Banking` folder, add MySQL Connector/J to the classpath, then compile and run:
+   ```bash
+   javac -cp mysql-connector-j.jar -d out com/Banking/*.java
+   java -cp out:mysql-connector-j.jar com.Banking.BankingProject
+   ```
+   Or import the files into Eclipse or IntelliJ and run `BankingProject`.
 
 ## Author
 
-**Haaseth Abhiram**
+**Abhiram Kamarajugadda**
+GitHub: [abhiramkamarajugadda](https://github.com/abhiramkamarajugadda) | Portfolio: [abhiramkamarajugadda.github.io](https://abhiramkamarajugadda.github.io)
