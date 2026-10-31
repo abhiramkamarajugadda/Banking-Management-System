@@ -12,7 +12,7 @@ public class ConnectionManager {
         String driver = "com.mysql.cj.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/jdbcbank";
 		String username = "root";
-		String password = "***REMOVED***";
+		String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "";
 
         Connection connection = null;
 

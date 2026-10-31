@@ -41,7 +41,7 @@ CREATE TABLE account (
 
 1. Clone: `git clone https://github.com/abhiramkamarajugadda/Banking-Management-System.git`
 2. Create the database and table above.
-3. Update the URL, username and password in `ConnectionManager.java`.
+3. Check the URL and username in `ConnectionManager.java` and set the `DB_PASSWORD` environment variable before starting (read in `ConnectionManager.java` with `System.getenv("DB_PASSWORD")`), for example `export DB_PASSWORD=your_mysql_password`. In Eclipse, add it under Run Configurations, Environment.
 4. Place the files in a `com/Banking` folder, add MySQL Connector/J to the classpath, then compile and run:
    ```bash
    javac -cp mysql-connector-j.jar -d out com/Banking/*.java
